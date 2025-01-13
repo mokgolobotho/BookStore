@@ -1,8 +1,37 @@
-﻿@{
+﻿@model List<BooksEntity> 
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>Books</h1>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <a asp-action="Create" asp-controller="Books" class="btn btn-success">Create</a>
+    </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                            <tr>
+                                <td>@book.Title</td>
+                                <td>@book.Author</td>
+                                <td>@book.ISBN</td>
+
+                            </tr>
+                }
+            </tbody>
+    </div>
+</div>
+

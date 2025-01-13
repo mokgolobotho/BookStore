@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1> Login </h1>
+<form asp-action="Login" asp-controller="Authentication" method="post">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" asp-for="Username" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" asp-for="Password" class="form-control" required/>   
+            </div>
+            <div class="form-group">
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+
+            <div class="card-footer">
+                <center>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <a asp-action="Register" asp-controller="Authentication" class="btn btn-secondary">Register</a>
+                </center>
+            </div>
+        </div>
+    </div>
+</form>

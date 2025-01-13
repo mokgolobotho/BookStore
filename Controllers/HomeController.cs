@@ -1,21 +1,25 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+using BookStore.Data;
 using BookStore.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private AppDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, AppDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View();
+        var books = _context.BooksEntity.ToList();
+        return View(books);
     }
 
     public IActionResult Privacy()
@@ -26,6 +30,8 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View(
+            new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier }
+        );
     }
 }
