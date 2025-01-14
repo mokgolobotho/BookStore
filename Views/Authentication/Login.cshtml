@@ -2,28 +2,41 @@
     ViewData["Title"] = "Login";
 }
 
-<h1> Login </h1>
-<form asp-action="Login" asp-controller="Authentication" method="post">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" asp-for="Username" class="form-control" required/>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" asp-for="Password" class="form-control" required/>   
-            </div>
-            <div class="form-group">
-                <div asp-validation-summary="All" class="text-danger"></div>
-            </div>
+@section Navbar {
+    <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3 justify-content-between">
+        <div class="container-fluid" >
+            <a asp-action="Register" asp-controller="Authentication" class="btn btn-secondary ms-auto">Register</a>
 
-            <div class="card-footer">
-                <center>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                    <a asp-action="Register" asp-controller="Authentication" class="btn btn-secondary">Register</a>
-                </center>
+        </div>
+    </nav>
+}
+<div class="container justify-content-center" style="width: 500px;">
+    <h1 class="text-center"> Login </h1>
+    @if (ViewData["ErrorMessage"] != null)
+    {
+                        <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+    }
+    <form asp-action="Login" asp-controller="Authentication" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" required/>   
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+
+                <div >
+                    <center>
+                        <button type="submit" class="btn btn-secondary">Login</button>
+                    </center>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
