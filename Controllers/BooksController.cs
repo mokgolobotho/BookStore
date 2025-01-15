@@ -26,10 +26,26 @@ public class BooksController : Controller
     }
 
     [HttpPost]
-    public IActionResult AddBook(BooksEntity book)
+    public IActionResult AddBook(BooksEntity book, IFormFile file)
     {
-        _context.BooksEntity.Add(book);
-        _context.SaveChanges();
-        return RedirectToAction("Index", "Home");
+        Console.WriteLine(file.FileName);
+        string extension = Path.GetExtension(file.FileName);
+
+        var validExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".tiff" };
+        if (validExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
+        {
+            string fileName = Guid.NewGuid().ToString() + extension;
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "images");
+            string pathName = Path.Combine(path, fileName);
+            using FileStream stream = new FileStream(pathName, FileMode.Create);
+
+            file.CopyTo(stream);
+
+            book.ImageUrl = pathName;
+            _context.BooksEntity.Add(book);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+        return View("Create");
     }
 }

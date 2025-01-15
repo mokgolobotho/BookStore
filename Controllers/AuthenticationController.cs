@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers;
@@ -22,10 +23,10 @@ public class AuthenticationController : Controller
     }
 
     [HttpPost]
-    public IActionResult Login(String username, String password)
+    public IActionResult LoginPost(IFormCollection form)
     {
-        Console.WriteLine(username);
-        Console.WriteLine(password);
+        string username = form["username"];
+        string password = form["password"];
         var user = _context.UsersEntity.FirstOrDefault(u => u.Username == username);
         if (user != null)
         {
@@ -35,7 +36,7 @@ public class AuthenticationController : Controller
             }
         }
         ViewData["ErrorMessage"] = "Invalid username or password.";
-        return View();
+        return View("Login");
     }
 
     public IActionResult Register()
@@ -52,13 +53,19 @@ public class AuthenticationController : Controller
         string password
     )
     {
+        var user1 = _context.UsersEntity.FirstOrDefault(u => u.Username == email);
+        if (user1 != null)
+        {
+            ViewData["ErrorMessage"] = "User email already exits";
+            return View();
+        }
         var user = new UsersEntity
         {
             Username = email,
             Name = name,
             Surname = surname,
             Cellphone = cellphone,
-            email = email,
+            Email = email,
             Password = password,
         };
 

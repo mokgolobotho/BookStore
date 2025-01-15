@@ -3,20 +3,20 @@
 }
 
 @section Navbar {
-    <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3 justify-content-between">
-        <div class="container-fluid" >
-            <a asp-action="Register" asp-controller="Authentication" class="btn btn-secondary ms-auto">Register</a>
+                <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3 justify-content-between">
+                    <div class="container-fluid" >
+                        <a asp-action="Register" asp-controller="Authentication" class="btn btn-secondary ms-auto">Register</a>
 
-        </div>
-    </nav>
+                    </div>
+                </nav>
 }
 <div class="container justify-content-center" style="width: 500px;">
     <h1 class="text-center"> Login </h1>
     @if (ViewData["ErrorMessage"] != null)
     {
-                        <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+                                    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
     }
-    <form asp-action="Login" asp-controller="Authentication" method="post">
+    <form asp-action="LoginPost" asp-controller="Authentication" method="post">
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
