@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Thabang\\Desktop\\asp.net\\BookStore\\BookStore\\wwwroot\\images\\59601d4e-ff96-49ec-b20a-3ce88f522be4.jpg",
+      "PackagePath": "staticwebassets\\images\\59601d4e-ff96-49ec-b20a-3ce88f522be4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Thabang\\Desktop\\asp.net\\BookStore\\BookStore\\wwwroot\\images\\d085dc28-994e-438e-98b8-70d04ca13928.jpg",
+      "PackagePath": "staticwebassets\\images\\d085dc28-994e-438e-98b8-70d04ca13928.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Thabang\\Desktop\\asp.net\\BookStore\\BookStore\\wwwroot\\images\\e31f234a-5b60-44b4-953c-e7b94ce5c93d.jpg",
+      "PackagePath": "staticwebassets\\images\\e31f234a-5b60-44b4-953c-e7b94ce5c93d.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Thabang\\Desktop\\asp.net\\BookStore\\BookStore\\wwwroot\\images\\fe1bba5c-54eb-4462-80f3-54eca981204d.jpg",
+      "PackagePath": "staticwebassets\\images\\fe1bba5c-54eb-4462-80f3-54eca981204d.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Thabang\\Desktop\\asp.net\\BookStore\\BookStore\\wwwroot\\images\\pic.jpg",
+      "PackagePath": "staticwebassets\\images\\pic.jpg"
+    },
+    {
       "Id": "C:\\Users\\Thabang\\Desktop\\asp.net\\BookStore\\BookStore\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

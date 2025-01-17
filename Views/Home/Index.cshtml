@@ -11,11 +11,37 @@
         <a asp-action="Create" asp-controller="Books" class="btn btn-success">Create</a>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var book in Model)
+    {
+              <div class="col-md-4 mb-4">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img
+                            src="@book.ImageUrl"
+                            class="img-thumbnail w-100 h-100"
+                            style="object-fit: cover"
+                            alt="Blog Image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@book.Title</h5>
+                                    <p class="card-text">@book.Author</p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+              </div>  
+    }
+    @* <div class="col-md-12">
         <table class="table">
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>ISBN</th>
@@ -25,6 +51,7 @@
                 @foreach (var book in Model)
                 {
                             <tr>
+                                <td><img src="@book.ImageUrl"  style="width: 100px; height: 100px; display: block;"/></td>
                                 <td>@book.Title</td>
                                 <td>@book.Author</td>
                                 <td>@book.ISBN</td>
@@ -32,6 +59,10 @@
                             </tr>
                 }
             </tbody>
-    </div>
+
+
+    </div> *@
+
 </div>
+
 

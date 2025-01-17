@@ -35,13 +35,13 @@ public class BooksController : Controller
         if (validExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
         {
             string fileName = Guid.NewGuid().ToString() + extension;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "images");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
             string pathName = Path.Combine(path, fileName);
             using FileStream stream = new FileStream(pathName, FileMode.Create);
 
             file.CopyTo(stream);
 
-            book.ImageUrl = pathName;
+            book.ImageUrl = "/images/" + fileName;
             _context.BooksEntity.Add(book);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
