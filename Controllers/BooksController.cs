@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers;
@@ -14,6 +15,7 @@ public class BooksController : Controller
         _context = context;
     }
 
+    [Authorize]
     public IActionResult Index()
     {
         var books = _context.BooksEntity.ToList();
@@ -31,7 +33,7 @@ public class BooksController : Controller
         Console.WriteLine(file.FileName);
         string extension = Path.GetExtension(file.FileName);
 
-        var validExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".tiff" };
+        var validExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
         if (validExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
         {
             string fileName = Guid.NewGuid().ToString() + extension;
@@ -44,6 +46,7 @@ public class BooksController : Controller
             book.ImageUrl = "/images/" + fileName;
             _context.BooksEntity.Add(book);
             _context.SaveChanges();
+            Console.WriteLine(User.Identity?.IsAuthenticated ?? false);
             return RedirectToAction("Index", "Home");
         }
         return View("Create");

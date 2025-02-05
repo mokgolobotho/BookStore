@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using BookStore.Data;
 using BookStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers;
@@ -16,6 +17,7 @@ public class HomeController : Controller
         _context = context;
     }
 
+    [Authorize]
     public IActionResult Index()
     {
         var books = _context.BooksEntity.ToList();
