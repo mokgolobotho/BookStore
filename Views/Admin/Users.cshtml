@@ -1,0 +1,49 @@
+@model List<UsersEntity>
+
+@{
+    ViewData["Title"] = "Admin Page";
+}
+@section Navbar {
+        <nav class="navbar navbar-light bg-white border-bottom box-shadow mb-3 justify-content-between">
+            <div class="container-fluid" >
+                <a asp-action="AdminHome" asp-controller="Admin" class="btn btn-secondary ms-auto">Home</a>
+            </div>
+            <div class="container-fluid" >
+                <a asp-action="Logout" asp-controller="Authentication" class="btn btn-secondary ms-auto">Logout</a>
+            </div>
+        </nav>
+}
+
+<h1>Users</h1>
+
+<div class="container">
+    @foreach (var user in Model)
+    {
+        <div class="row">
+            <div class="card border-secondary mb-3">
+                <div class="row">
+                    <div class="card-body">
+                        <div class="col-md-4">
+                            @* <p class="card-title">Name: @user.Name @user.Surname</p> *@
+                            <p>
+                                <td>Name:</td>
+                                <td> @user.Name @user.Surname</td>
+                            </p>
+                            <p>
+                                <td>Contact:</td>
+                                <td> @user.Cellphone</td>
+                            </p>
+                            <p>
+                                <td>Role:</td>
+                                <td> @user.Role</td>
+                            </p>
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <a asp-action="" asp-controller="" class="btn btn-secondary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

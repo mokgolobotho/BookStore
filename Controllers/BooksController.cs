@@ -47,8 +47,34 @@ public class BooksController : Controller
             _context.BooksEntity.Add(book);
             _context.SaveChanges();
             Console.WriteLine(User.Identity?.IsAuthenticated ?? false);
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("AdminHome", "Admin");
+            }
             return RedirectToAction("Index", "Home");
         }
         return View("Create");
+    }
+
+    public IActionResult Delete(int id)
+    {
+        var book = _context.BooksEntity.FirstOrDefault(b => b.Id == id);
+        Console.WriteLine(id);
+        if (book != null)
+        {
+            _context.BooksEntity.Remove(book);
+            _context.SaveChanges();
+        }
+        if (User.IsInRole("Admin"))
+        {
+            return RedirectToAction("AdminHome", "Admin");
+        }
+        return RedirectToAction("Index", "Home");
+    }
+
+    public IActionResult EditBook(int id)
+    {
+        var book = _context.BooksEntity.FirstOrDefault(b => b.Id == id);
+        return View(book);
     }
 }

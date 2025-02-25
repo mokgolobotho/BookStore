@@ -39,9 +39,6 @@ public class AuthenticationController : Controller
                 claims.Add(new Claim(ClaimTypes.Name, user.Username));
                 claims.Add(new Claim(ClaimTypes.Email, user.Email));
 
-                //set coockies
-
-
                 if (user.Role == "Admin")
                 {
                     claims.Add(new Claim(ClaimTypes.Role, user.Role));
@@ -81,9 +78,11 @@ public class AuthenticationController : Controller
         string surname,
         string cellphone,
         string email,
+        string role,
         string password
     )
     {
+        Console.WriteLine(role);
         var user1 = _context.UsersEntity.FirstOrDefault(u => u.Username == email);
         if (user1 != null)
         {
@@ -94,6 +93,7 @@ public class AuthenticationController : Controller
         {
             Username = email,
             Name = name,
+            Role = role,
             Surname = surname,
             Cellphone = cellphone,
             Email = email,

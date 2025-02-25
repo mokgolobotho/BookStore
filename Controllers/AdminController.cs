@@ -19,9 +19,14 @@ public class AdminController : Controller
     [Authorize(Roles = "Admin")]
     public IActionResult AdminHome()
     {
-        Console.WriteLine(User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value);
-        Console.Write("debug");
         var books = _context.BooksEntity.ToList();
         return View(books);
+    }
+
+    [Authorize(Roles = "Admin")]
+    public IActionResult Users()
+    {
+        var users = _context.UsersEntity.ToList();
+        return View(users);
     }
 }
